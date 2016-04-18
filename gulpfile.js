@@ -1,11 +1,14 @@
 var gulp = require('gulp');
-var livereload = require('gulp-livereload');
-var nodemon = require('gulp-nodemon');
 var babel = require('gulp-babel');
 var babelify = require('babelify');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
+
+if (process.env.NODE_ENV === 'development') {
+  var livereload = require('gulp-livereload');
+  var nodemon = require('gulp-nodemon');
+}
 
 gulp.task('dev', function () {
 
@@ -68,8 +71,7 @@ gulp.task('buildClient', function () {
     // .pipe(uglify())
     // .pipe(concat('app.js'))
     // .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("public/javascripts"))
-    .pipe(livereload());
+    .pipe(gulp.dest("public/javascripts"));
 
 });
 
